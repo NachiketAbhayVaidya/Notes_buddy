@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: notifyy-backend
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /ping
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: APP_KEY
+        sync: false
